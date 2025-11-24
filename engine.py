@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 from dataclasses import dataclass, field
 
-# -----------------------------
+
 # Game configuration
-# -----------------------------
+
 HAND_SIZE = 5
 MAX_ROUNDS = 10
 
@@ -158,7 +158,6 @@ def bot_act(g: GameState, ai: BluffBotAI):
     g.bot.hand.remove(actual_strength)
 
     # player doesn't call in MVP; bot gets a point if bluffing and not called
-    # We'll simulate player call chance lightly later if you want.
     bot_called = False
 
     if bluff:
@@ -168,3 +167,5 @@ def bot_act(g: GameState, ai: BluffBotAI):
         result = "Bot honest play"
 
     log_event(g, "bot", actual_strength, claim, bluff, bot_called, result)
+
+

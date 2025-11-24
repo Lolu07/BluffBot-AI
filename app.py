@@ -7,9 +7,9 @@ from engine import BluffBotAI, init_game, player_turn, MAX_ROUNDS
 
 st.set_page_config(page_title="BluffBot MVP", page_icon="🃏", layout="wide")
 
-# -----------------------------
+
 # Session state setup
-# -----------------------------
+
 if "ai" not in st.session_state:
     st.session_state.ai = BluffBotAI()
 
@@ -19,15 +19,14 @@ if "game" not in st.session_state:
 g = st.session_state.game
 ai = st.session_state.ai
 
-# -----------------------------
+
 # Header
-# -----------------------------
+
 st.title("🃏 BluffBot — Adaptive AI Bluffing Game (MVP)")
 st.caption("The AI learns your bluffing style over time. Try to outsmart it!")
 
-# -----------------------------
+
 # Main layout
-# -----------------------------
 left, right = st.columns([2, 1])
 
 with left:
@@ -71,7 +70,7 @@ with right:
     st.metric("Your Score", g.player.score)
     st.metric("Bot Score", g.bot.score)
 
-    # Suspicion meter = average bot call tendency for your contexts
+    
     if len(g.history) > 0:
         player_rows = g.history[g.history["actor"] == "player"]
         bluff_rate = player_rows["did_bluff"].mean() if len(player_rows) else 0
@@ -98,9 +97,8 @@ with right:
     else:
         st.write("_No moves yet_")
 
-# -----------------------------
+
 # History table + download
-# -----------------------------
 st.write("---")
 st.subheader("🧾 Game Log")
 
@@ -113,3 +111,4 @@ st.download_button(
     file_name="bluffbot_session_log.csv",
     mime="text/csv",
 )
+
